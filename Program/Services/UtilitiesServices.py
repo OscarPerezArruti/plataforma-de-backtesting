@@ -1,6 +1,6 @@
 import logging
 from .ServiceConstants import *
-from Config import *
+from Exceptions import *
 
 logging = logging.getLogger(__name__)
 
