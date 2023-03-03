@@ -24,13 +24,21 @@ class baseMongoDbService:
 
     """
 
-    def __init__(self,api_key) -> None:
-        self.api_key = api_key
+    def __init__(self,user=None,password=None,url="mongodb://localhost:27017/") -> None:
+        self.user = user
+        self.password = password
+        self.url = url
         self.utilities = serviceUtilities()
-        self.baseUrl = "https://api.twelvedata.com/"
+       
+    def __enter__(self):
+
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
 
     def doRequest(self):
-      pass
+        pass
 
     def MongoDbPost(self):
         pass
