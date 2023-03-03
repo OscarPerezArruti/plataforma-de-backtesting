@@ -1,7 +1,12 @@
 from Services import *
+from System import *
 
 
-objt = twelveDataService()
-res = objt.__doPostTwelveData__(endpoint="time_series",symbol="AAPL",interval="1min",outputsize=1)
-quote = objt.__doPostTwelveData__(endpoint="quote",symbol="AAPL")
- 
+cred = Credentials()
+api_key = cred.get_password(name="api_key",username="api_key")
+
+objt = twelveDataService(api_key)
+res = objt.TwelveDataPost(endpoint="time_series",symbol="AAPL",interval="1min",outputsize=1)
+quote = objt.TwelveDataPost(endpoint="quote",symbol="AAPL")
+print(res)
+print(quote)
