@@ -1,10 +1,3 @@
-from .TwelveDataExceptions import * 
-from .CredentialsException import * 
+from .TwelveDataExceptions import twelveDataBadRequest,twelveDataNoParams,twelveDataRequieredParam,twelveDataInvalidEndpoint,twelveDataInvalidParam
+from .CredentialsException import CredentialSimpleError
 
-
-    
-from colorama import Fore
-color_red = Fore.RED
-reset = Fore.RESET
-def buildMessage(message):
-    return color_red + message + reset
