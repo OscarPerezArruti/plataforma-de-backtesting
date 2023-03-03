@@ -29,7 +29,7 @@ class twelveDataService:
     """
 
     def __init__(self) -> None:
-        self.api_key = '5a0f7179cffa430d84ab153c6c03b604'
+        self.api_key = None
         self.utilities = utilitiesServices()
         self.baseUrl = "https://api.twelvedata.com/"
 
