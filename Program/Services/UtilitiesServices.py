@@ -39,16 +39,19 @@ class utilitiesServices:
 
     def checkTwelveRequiredParams(self,endpoint,params):
         """
-        Checks if a given endpoint exists on TwelveData API
+        @TODO rellenar
 
         Parameters
         ----------
-        endpoint : str
-            enpoint to be checked
+        @TODO rellenar
 
         Returns
         -------
-        boolean:True if the endpoint exists
+        @TODO rellenar
+        
+        Exceptions
+        ----------
+        @TODO rellenar
         """
         # Checks if valid enpoint
         self.checkTwelveDataEndpoint(endpoint=endpoint) 
@@ -56,9 +59,7 @@ class utilitiesServices:
         for requieredParam in RequieredParameters[endpoint]: 
             if params.get(requieredParam) == None:
                 raise twelveDataRequieredParam(requieredParam)
-        return True
-    
-    
+        return True    
     
     def checkTwelveDataParameters(self,endpoint,params):
         """
@@ -78,7 +79,7 @@ class utilitiesServices:
         
         Exceptions
         ----------
-        
+        @TODO rellenar
         
         """
         self.checkTwelveDataEndpoint(endpoint=endpoint)
@@ -105,6 +106,11 @@ class utilitiesServices:
         Returns
         -------
         str:Returns the complete url ready to use on a HTTP Request
+        
+        Exceptions
+        ----------
+        @TODO rellenar
+        
         """
         logging.debug("Inicio de ejecución de def makeEnpoint()")
         parameters = [] # ARRAY DONDE IRÁN LOS PARAMETROS

@@ -1,6 +1,5 @@
-from colorama import Fore
-color_red = Fore.RED
-reset = Fore.RESET
+from . import buildMessage
+
 
 
 
@@ -23,7 +22,3 @@ class twelveDataInvalidEndpoint(Exception):
 class twelveDataInvalidParam(Exception):
   def __init__(self,param):
     self.message = buildMessage(f"[TWELVE_DATA_ERROR] Invalid parameter {param}")
-    
-    
-def buildMessage(message):
-    return color_red + message + reset
