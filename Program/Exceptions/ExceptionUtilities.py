@@ -25,7 +25,7 @@ class exceptionUtilities:
     @TODO rellenar
 
     """
-    def buildMessage(message):
+    def buildMessage(self,message):
         """
         @TODO rellenar
 

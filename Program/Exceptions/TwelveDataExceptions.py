@@ -10,6 +10,13 @@ class twelveDataBadRequest(Exception):
   """
   def __init__(self,error):
     self.message = exeU.buildMessage(f"[TWELVE_DATA_ERROR] {error}")
+    
+class twelveDataNoParamsNeeded(Exception):
+  """
+  @TODO Generar DOC
+  """
+  def __init__(self):
+    self.message = exeU.buildMessage(f"[TWELVE_DATA_ERROR] THis endpoint does not allow any parametters")
 
 class twelveDataNoParams(Exception):
   """

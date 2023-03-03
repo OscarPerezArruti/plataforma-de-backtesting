@@ -4,7 +4,7 @@ from Exceptions import *
 
 logging = logging.getLogger(__name__)
 
-class utilitiesServices:
+class serviceUtilities:
     """
     A class that stores avery auxiliary method needed
     in order to use any class inside Services package.
@@ -56,9 +56,10 @@ class utilitiesServices:
         # Checks if valid enpoint
         self.checkTwelveDataEndpoint(endpoint=endpoint) 
         # checks if every requiered param is on params dict
-        for requieredParam in RequieredParameters[endpoint]: 
-            if params.get(requieredParam) == None:
-                raise twelveDataRequieredParam(requieredParam)
+        if len(RequieredParameters[endpoint]) > 0:
+            for requieredParam in RequieredParameters[endpoint]: 
+                if params.get(requieredParam) == None:
+                    raise twelveDataRequieredParam(requieredParam)
         return True    
     
     def checkTwelveDataParameters(self,endpoint,params):
@@ -83,6 +84,8 @@ class utilitiesServices:
         
         """
         self.checkTwelveDataEndpoint(endpoint=endpoint)
+        if(len(ValidParameters[endpoint])==0 and params != {}):
+             raise twelveDataNoParamsNeeded() # IF 
         for param in params.keys():  # Checks if every param is a valid one
             if param not in ValidParameters[endpoint]:
                 raise twelveDataInvalidParam(param)

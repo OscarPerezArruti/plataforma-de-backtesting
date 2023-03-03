@@ -1,5 +1,5 @@
 import requests
-from .UtilitiesServices import utilitiesServices
+from .ServiceUtilities import serviceUtilities
 from Exceptions import *
 import logging
 import json
@@ -20,7 +20,7 @@ class baseTwelveDataService:
     ----------
     api_key : str
         Api key of you TwelveData account
-    utilities : utilitiesServices
+    utilities : serviceUtilities
         Class to use auxiliry methods
     baseUrl : str
         Base url of every API call
@@ -32,10 +32,10 @@ class baseTwelveDataService:
 
     def __init__(self,api_key) -> None:
         self.api_key = api_key
-        self.utilities = utilitiesServices()
+        self.utilities = serviceUtilities()
         self.baseUrl = "https://api.twelvedata.com/"
 
-    def doPost(self, url, action="GET",payload={}, headers={}):
+    def doRequest(self, url, action="GET",payload={}, headers={}):
       """
         Checks if a given endpoint exists on TwelveData API
 
@@ -68,7 +68,7 @@ class baseTwelveDataService:
         raise twelveDataBadRequest(res["message"])
       return res
 
-    def TwelveDataPost(self,endpoint,**kwargs):
+    def TwelveDataRequest(self,endpoint,**kwargs):
         """
         Starts the process of performign a HTTP request to the TwelveData API
         by making some checks like:
@@ -99,14 +99,11 @@ class baseTwelveDataService:
 
         try:
           self.utilities.checkTwelveDataEndpoint(endpoint=endpoint)
-          if kwargs == {}:
-            raise twelveDataNoParams() 
-          kwargs["apikey"] = self.api_key
           self.utilities.checkTwelveRequiredParams(endpoint,kwargs)
           self.utilities.checkTwelveDataParameters(endpoint,kwargs)
           
           httpURL = self.utilities.makeTwelveDataEndpoint(url=self.baseUrl,endpoint=endpoint,params=kwargs)
-          res = self.doPost(httpURL)
+          res = self.doRequest(httpURL)
           return res
         except twelveDataInvalidEndpoint as e:
           log.error(e.message)
@@ -123,6 +120,9 @@ class baseTwelveDataService:
         except twelveDataNoParams as e:
           log.error(e.message)
           return "NO DATA"
+        except twelveDataNoParamsNeeded as e:
+          log.error(e.message)
+          return "NO DATA"
         except Exception as e:
           log.error(e)
           return "NO DATA"
@@ -136,7 +136,7 @@ class twelveDataService(baseTwelveDataService):
     ----------
     api_key : str
         Api key of TwelveData API
-    utilities : utilitiesServices
+    utilities : serviceUtilities
         Class to use auxiliry methods
     baseUrl : str
         Base url of every API call
