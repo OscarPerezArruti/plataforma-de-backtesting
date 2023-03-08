@@ -62,11 +62,18 @@ class baseTwelveDataService:
         
       
       # We make the HTTP Request
-      res = json.loads(requests.request(action, url, headers=headers, data=payload).text)
-      log.debug(res)
+      request = requests.request(action, url, headers=headers, data=payload).text
+      
+      try:
+        res = json.loads(request)
+      except:
+        return request
+      
       if res.get("status") != None and  res["status"] == "error":
-        raise twelveDataBadRequest(res["message"])
+          raise twelveDataBadRequest(res["message"])
       return res
+          
+        
 
     def TwelveDataRequest(self,endpoint,**kwargs):
         """
@@ -148,3 +155,21 @@ class twelveDataService(baseTwelveDataService):
   def __init__(self, api_key) -> None:
     super().__init__(api_key)
     
+  def timeSeries(self,symbol,interval,apikey,exchange):
+    """
+    A class representing all predefined TwelveData API Call
+
+    Parametters
+    ----------
+    #TODO
+
+    Returns
+    -------
+    #TODO
+
+    Raise
+    -------
+    #TODO
+    """
+    endpoint = "time_series"
+    return self.TwelveDataRequest

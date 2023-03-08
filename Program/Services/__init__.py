@@ -1,5 +1,7 @@
 from .TwelveDataService import *
 from .ServiceUtilities import *
-import logging
+from .MongoDbService import *
 
+
+import logging
 logging.basicConfig(level=logging.INFO)

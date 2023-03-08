@@ -15,7 +15,7 @@ class Credentials:
     A class representing the communication interface between OS Password
     manager and python program
 
-    Attributes
+    AttributesA
     ----------
     @TODO rellenar
 
